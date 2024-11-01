@@ -12,7 +12,10 @@ module.exports = {
     extend: {
       backgroundImage: {
         'web-main-banner': "url('/images/web_bg_large.jpeg')",
-      }
+      },
+      fontFamily: {
+        sans: ['var(--font-yanone)'],
+      },
     },
   },
   plugins: [],

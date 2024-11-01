@@ -1,5 +1,12 @@
 import "./globals.css";
 
+import { Yanone_Kaffeesatz } from 'next/font/google'
+ 
+const yanone = Yanone_Kaffeesatz({
+  subsets: ['latin'],
+  variable: '--font-yanone',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body>
+      <body className={`${yanone.variable} font-sans`}>
         {children}
       </body>
     </html>
