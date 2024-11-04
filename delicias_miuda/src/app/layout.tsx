@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body className={`${yanone.variable} font-sans`}>
+    <html lang="pt-br" className="bg-rose-100/80">
+      <body className={`${yanone.variable} `}>
         {children}
       </body>
     </html>
