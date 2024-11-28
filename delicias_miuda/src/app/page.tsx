@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="xl:w-[70%] xl:mx-auto ">
+    <section className="xl:w-[70%] xl:mx-auto 2xl:w-1/2">
       <div className="relative xl:rounded-b-md md:h-[450px] lg:h-[600px] h-[300px] bg-web-main-banner bg-cover bg-no-repeat bg-center flex justify-center items-center md:justify-start md:ps-20">
-        <h1 className="relative text-white text-3xl mt-40 xl:mt-60 text-center inset-0 bg-gray-600 opacity-70 px-4 py-2 rounded-lg lg:w-96" >
+        <h1 className="relative text-white text-3xl mt-40 xl:mt-60 text-center inset-0 bg-gray-600 opacity-70 px-4 py-2 rounded-lg lg:w-96 mx-4" >
           {`Uma explosão de sabores`} <br /> {`à cada mordida`}
         </h1>
       </div>
@@ -22,7 +22,7 @@ export default function Home() {
         />
       </div>
 
-    <div className="grid gap-6 md:m-6 m-4 xl:mx-0 md:grid-cols-3">
+    <div className="grid gap-6 md:m-6 m-4 xl:mx-0 md:grid-cols-2 lg:grid-cols-3">
       <Link href={'/produtos/bolosdepote'} className="bg-bolo-pote md:flex-1 h-[250px] rounded-md bg-center bg-cover flex items-end hover:scale-105 duration-300">
         <div className="bg-heavy-rose opacity-70 h-12 w-full flex justify-center items-center mb-8">
           <h1 className="text-white text-2xl inset-0">Bolos de pote</h1>
