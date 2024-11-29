@@ -1,0 +1,71 @@
+"use client"
+import FormSubmitButton from "../systemComponents/formSubmitButton"
+import Link from 'next/link';
+import { useState } from "react";
+
+import { FiEye, FiEyeOff } from "react-icons/fi";
+
+const LoginForm: React.FC = () => {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
+
+    return (
+        <form className="w-full flex flex-col justify-around h-full">
+            <div className="flex flex-col gap-6 mx-10">
+                <div className="flex flex-col gap-1 w-full">
+                    <label className="text-sm text-slate-600 font-semibold">Usuário</label>
+                    <input
+                        name="email"
+                        className="rounded-lg px-2 py-1 outline-none focus:ring-0"
+                        placeholder="Digite o seu email"
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1 w-full relative">
+                    <label className="text-sm text-slate-600 font-semibold">Senha</label>
+                    <div className="relative flex items-center border border-slate-600 rounded-lg">
+                        <input
+                            name="password"
+                            type={showPassword ? "text" : "password"}
+                            className="px-2 py-1 flex-grow outline-none border-none rounded-lg focus:ring-0"
+                            placeholder="Digite sua senha"
+                        />
+                        <button
+                            type="button"
+                            className="text-slate-600 px-0.5"
+                            onClick={handleTogglePasswordVisibility}
+                        >
+                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                    <div className="flex flex-col items-center w-full">
+                        <FormSubmitButton
+                            isFull
+                            buttonColor="bg-amber-500 hover:bg-amber-400"
+                            action="Login"
+                            waiting="Validando suas informações"
+                        />
+                    </div>
+                </div>
+
+                <Link
+                    className="text-center font-semibold text-sm text-yellow-500 hover:underline"
+                    href="/recovery"
+                >
+                    Esqueci a minha senha
+                </Link>
+            </div>
+        </form>
+    )
+}
+
+export default LoginForm
