@@ -2,7 +2,6 @@
 
 import { ReactElement } from 'react'
 import { useFormStatus } from 'react-dom'
-import { Oval } from 'react-loader-spinner'
 
 interface IFormSubmitButton {
     action: string | ReactElement
@@ -22,7 +21,6 @@ export default function FormSubmitButton({ action, waiting, onClick, buttonColor
             disabled={pending}>
             {pending ? <div className='flex items-center justify-center'> 
                 <p>{waiting}</p>
-                <Oval visible={true} ariaLabel="oval-loading" color='#facc15' secondaryColor='#fef08a' height={16} strokeWidth={10} />
             </div>
                 :
                 `${action}`}

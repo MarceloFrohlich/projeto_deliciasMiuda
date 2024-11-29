@@ -3,7 +3,7 @@ import FormSubmitButton from "../systemComponents/formSubmitButton"
 import Link from 'next/link';
 import { useState } from "react";
 
-import { FiEye, FiEyeOff } from "react-icons/fi";
+// import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const LoginForm: React.FC = () => {
 
@@ -16,13 +16,13 @@ const LoginForm: React.FC = () => {
 
 
     return (
-        <form className="w-full flex flex-col justify-around h-full">
-            <div className="flex flex-col gap-6 mx-10">
+        <form className="w-full flex flex-col justify-around h-full font-sans">
+            <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-1 w-full">
                     <label className="text-sm text-slate-600 font-semibold">Usuário</label>
                     <input
                         name="email"
-                        className="rounded-lg px-2 py-1 outline-none focus:ring-0"
+                        className="rounded-lg px-2 py-1 outline-none border border-slate-600  focus:ring-0"
                         placeholder="Digite o seu email"
                     />
                 </div>
@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
                             className="text-slate-600 px-0.5"
                             onClick={handleTogglePasswordVisibility}
                         >
-                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                            {/* {showPassword ? <FiEyeOff /> : <FiEye />} */}
                         </button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const LoginForm: React.FC = () => {
                     <div className="flex flex-col items-center w-full">
                         <FormSubmitButton
                             isFull
-                            buttonColor="bg-amber-500 hover:bg-amber-400"
+                            buttonColor="bg-yellow-800 hover:bg-yellow-950"
                             action="Login"
                             waiting="Validando suas informações"
                         />
@@ -58,7 +58,7 @@ const LoginForm: React.FC = () => {
                 </div>
 
                 <Link
-                    className="text-center font-semibold text-sm text-yellow-500 hover:underline"
+                    className="text-center font-semibold text-sm text-yellow-800 hover:underline"
                     href="/recovery"
                 >
                     Esqueci a minha senha
