@@ -1,9 +1,16 @@
 import axios from 'axios';
-import { parseCookies } from 'nookies';
 import { decryptData } from './generalFunctions';
-const { token } = parseCookies()
 
-const decryptedToken = decryptData(token)
+import { cookies } from 'next/headers';
+
+const cookieStore = cookies();
+const token = cookieStore.get('token')?.value;
+const decryptedToken = decryptData(token);
+
+// Verifica se o token está presente
+if (!token) {
+  throw new Error('Token não encontrado.');
+}
 
 // Criar a instância do axios para json
 export const api = axios.create({

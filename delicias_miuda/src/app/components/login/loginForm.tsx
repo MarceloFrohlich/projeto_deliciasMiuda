@@ -37,8 +37,11 @@ const LoginForm: React.FC = () => {
             })
 
             setCookie(null, 'token', encryptData(response.data.accessToken), {
-                maxAge: 60 * 60 * 24 * 7,
-                path: '/',
+                maxAge: 60 * 60 * 24 * 7, // 7 dias
+                path: '/', // Disponível em todas as rotas
+                httpOnly: true, // Acessível apenas no servidor
+                secure: process.env.NODE_ENV === 'production', // Enviar apenas via HTTPS em produção
+                sameSite: 'strict', // Proteção contra CSRF
             });
             window.location.href = '/painel'
         } else {

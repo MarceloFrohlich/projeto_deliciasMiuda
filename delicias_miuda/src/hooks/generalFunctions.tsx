@@ -20,3 +20,12 @@ export function encryptData(data: any) {
     const decryptedBytes = aesCtr.decrypt(encryptedBytes);
     return JSON.parse(aesjs.utils.utf8.fromBytes(decryptedBytes));
   }
+
+  export function formatData(data: string) {
+    const newData = new Date(data)
+    const year = newData.getFullYear()
+    const month = String(newData.getMonth() + 1).padStart(2, '0')
+    const day = String(newData.getDate()).padStart(2, '0')
+
+    return `${day}/${month}/${year}`
+}
