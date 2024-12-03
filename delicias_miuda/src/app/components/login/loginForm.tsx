@@ -3,14 +3,14 @@ import FormSubmitButton from "../systemComponents/formSubmitButton"
 import Link from 'next/link';
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-
 import handleApiResponse from "../../../hooks/requestValidation";
-import { Alert } from "@mui/material";
 import { setCookie } from "nookies";
 import { login } from "../../../hooks/login/api";
+import { useToast } from "../../../components/ui/use-toast";
+import { encryptData } from "../../../hooks/generalFunctions";
 
 const LoginForm: React.FC = () => {
-
+    const {toast} = useToast()
     const [showPassword, setShowPassword] = useState(false);
 
 
@@ -30,18 +30,26 @@ const LoginForm: React.FC = () => {
         console.log(response.data)
         const result = handleApiResponse(response)
         if (result.status === 'ok') {
+            toast({
+                title: 'Login Efetuado com sucesso',
+                variant: 'success',
+                duration: 2000
+            })
 
-
-            setCookie(null, 'token', response.data.accessToken, {
+            setCookie(null, 'token', encryptData(response.data.accessToken), {
                 maxAge: 60 * 60 * 24 * 7,
                 path: '/',
             });
             window.location.href = '/painel'
         } else {
-
+            toast({
+                title: 'Ocorreu um erro durante seu login',
+                description: result.mensagem,
+                variant: 'destructive',
+                duration: 2000
+            })
         }
         
-
     }
 
     return (
