@@ -2,8 +2,12 @@
 import FormSubmitButton from "../systemComponents/formSubmitButton"
 import Link from 'next/link';
 import { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
-// import { FiEye, FiEyeOff } from "react-icons/fi";
+import handleApiResponse from "../../../hooks/requestValidation";
+import { Alert } from "@mui/material";
+import { setCookie } from "nookies";
+import { login } from "../../../hooks/login/api";
 
 const LoginForm: React.FC = () => {
 
@@ -15,8 +19,33 @@ const LoginForm: React.FC = () => {
     };
 
 
+
+    async function loginAction(formData: FormData) {
+        const loginData = {
+            email: formData.get('email'),
+            password: formData.get('password')
+        }
+
+        const response = await login(loginData)
+        console.log(response.data)
+        const result = handleApiResponse(response)
+        if (result.status === 'ok') {
+
+
+            setCookie(null, 'token', response.data.accessToken, {
+                maxAge: 60 * 60 * 24 * 7,
+                path: '/',
+            });
+            window.location.href = '/painel'
+        } else {
+
+        }
+        
+
+    }
+
     return (
-        <form className="w-full flex flex-col justify-around h-full font-sans">
+        <form action={loginAction} className="w-full flex flex-col justify-around h-full font-sans">
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-1 w-full">
                     <label className="text-sm text-slate-600 font-semibold">Usuário</label>
@@ -41,7 +70,7 @@ const LoginForm: React.FC = () => {
                             className="text-slate-600 px-0.5"
                             onClick={handleTogglePasswordVisibility}
                         >
-                            {/* {showPassword ? <FiEyeOff /> : <FiEye />} */}
+                            {showPassword ? <FiEyeOff /> : <FiEye />}
                         </button>
                     </div>
                 </div>
