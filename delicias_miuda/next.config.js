@@ -7,6 +7,5 @@ module.exports = {
       //   hostname: 'dashboard.agenciavela.com.br',
       // },
     ],
-    unoptimized: true,
   }
 };

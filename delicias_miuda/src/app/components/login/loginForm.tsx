@@ -8,8 +8,11 @@ import { setCookie } from "nookies";
 import { login } from "../../../hooks/login/api";
 import { useToast } from "../../../components/ui/use-toast";
 import { encryptData } from "../../../hooks/generalFunctions";
+import { useRouter } from "next/navigation";
+
 
 const LoginForm: React.FC = () => {
+    const router = useRouter()
     const {toast} = useToast()
     const [showPassword, setShowPassword] = useState(false);
 
@@ -27,7 +30,6 @@ const LoginForm: React.FC = () => {
         }
 
         const response = await login(loginData)
-        console.log(response.data)
         const result = handleApiResponse(response)
         if (result.status === 'ok') {
             toast({
@@ -39,11 +41,10 @@ const LoginForm: React.FC = () => {
             setCookie(null, 'token', encryptData(response.data.accessToken), {
                 maxAge: 60 * 60 * 24 * 7, // 7 dias
                 path: '/', // Disponível em todas as rotas
-                httpOnly: true, // Acessível apenas no servidor
                 secure: process.env.NODE_ENV === 'production', // Enviar apenas via HTTPS em produção
                 sameSite: 'strict', // Proteção contra CSRF
             });
-            window.location.href = '/painel'
+            router.push('/painel')
         } else {
             toast({
                 title: 'Ocorreu um erro durante seu login',
