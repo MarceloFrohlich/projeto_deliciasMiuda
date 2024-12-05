@@ -1,14 +1,13 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { registerProduct, registerSection } from "./api"
+import { deleteProduct, registerOption, registerProduct, registerSection } from "./api"
 
 export async function registerProductAction(formData: FormData) {
     const response = await registerProduct(formData)
     if (response.status === 201) {
         revalidatePath('/painel/produtos')
     }
-
 }
 
 export async function registerSectionAction(formData: FormData) {
@@ -22,5 +21,25 @@ export async function registerSectionAction(formData: FormData) {
     if (response.status === 201) {
         revalidatePath('/painel/produtos')
     }
+}
 
+export async function registerOptionAction(formData: FormData) {
+    const sectionId = formData.get('sectionId') as string;
+
+    if (!sectionId) {
+        throw new Error('O ID da seção é obrigatório.');
+    }
+    
+    const response = await registerOption(sectionId, formData)
+    if (response.status === 201) {
+        revalidatePath('/painel/produtos')
+    }
+}
+
+export async function destroyProduct(productId: string) {
+    
+    const response = await deleteProduct(productId)
+    if (response.status === 201) {
+        revalidatePath('/painel/produtos')
+    }
 }

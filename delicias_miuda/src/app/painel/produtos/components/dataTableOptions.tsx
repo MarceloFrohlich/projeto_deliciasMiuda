@@ -2,10 +2,10 @@
 
 import React from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
-import { ISections } from '../types/types';
+import { IOptions, ISections } from '../types/types';
 import { formatData } from '@/hooks/generalFunctions'
 import DeleteSectionModal from './deleteSectionModal';
-import OptionsDialog from './optionsDialog';
+import DeleteOptionModal from './deleteOptionModal';
 
 createTheme(
     'delicias',
@@ -19,45 +19,44 @@ createTheme(
     },
 );
 
-interface IDataTableProducts {
-    sections: ISections[]
+interface IDataTableOptions {
+    options: IOptions[]
 }
 
-const DataTableSections: React.FC<IDataTableProducts> = ({
-    sections
+const DataTableOptions: React.FC<IDataTableOptions> = ({
+    options
 }) => {
 
     const columns = [
         {
-            name: 'Titulo',
-            selector: (row: ISections) => row.title,
+            name: 'Descrição',
+            selector: (row: IOptions) => row.description,
             sortable: true,
-            cell: (row: ISections) => <div className="rdt_TableCell custom-column-empresa-empresa">{row.title}</div>,
-            width: '20%'
-
-        },
-        {
-            name: 'Observações',
-            selector: (row: ISections) => row.description,
-            sortable: true,
-            cell: (row: ISections) => <div className="rdt_TableCell custom-column-empresa-empresa">{row.description}</div>,
+            cell: (row: IOptions) => <div className="rdt_TableCell custom-column-empresa-empresa">{row.description}</div>,
             width: '50%'
 
         },
         {
-            name: 'Cadastrado em:',
-            selector: (row: ISections) => row.createdAt,
+            name: 'Preço',
+            selector: (row: IOptions) => row.price,
             sortable: true,
-            cell: (row: ISections) => <div className="rdt_TableCell custom-column-empresa-cnpj">{formatData(row.createdAt)}</div>,
+            cell: (row: IOptions) => <div className="rdt_TableCell custom-column-empresa-empresa">{row.price ? row.price : 'Não cadastrado'}</div>,
+            width: '20%'
+
+        },
+        {
+            name: 'Cadastrado em:',
+            selector: (row: IOptions) => row.createdAt,
+            sortable: true,
+            cell: (row: IOptions) => <div className="rdt_TableCell custom-column-empresa-cnpj">{formatData(row.createdAt)}</div>,
             width: '10%'
         },
         {
             name: 'Ações',
-            selector: (row: ISections) => row.id,
+            selector: (row: IOptions) => row.id,
             sortable: true,
-            cell: (row: ISections) => <div className="rdt_TableCell custom-column-empresa-cnpj flex items-center gap-2">
-                <OptionsDialog sectionId={row.id} sectionName={row.title} options={row.options}/>
-                <DeleteSectionModal />
+            cell: (row: IOptions) => <div className="rdt_TableCell custom-column-empresa-cnpj">
+                <DeleteOptionModal />
             </div>,
             width: '10%'
         },
@@ -67,7 +66,7 @@ const DataTableSections: React.FC<IDataTableProducts> = ({
     return (
         <DataTable
             columns={columns}
-            data={sections}
+            data={options}
             pagination
             paginationPerPage={10}
             noDataComponent={<div className="mt-8 font-semibold">Nenhum produto cadastrado!</div>}
@@ -84,4 +83,4 @@ const DataTableSections: React.FC<IDataTableProducts> = ({
     );
 };
 
-export default DataTableSections;
+export default DataTableOptions;

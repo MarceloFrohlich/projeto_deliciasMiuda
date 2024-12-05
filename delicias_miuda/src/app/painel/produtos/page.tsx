@@ -5,8 +5,7 @@ import IncludeProductModal from "./components/includeProductModal"
 
 const Produtos: React.FC = async () => {
     const products = await getAllProducts()
-
-    console.log(products.data)
+    
     return (
         <div className="bg-rose-100/80 font-sans">
             <div className="rounded-md bg-gray-50 mx-6 mt-6 p-6">

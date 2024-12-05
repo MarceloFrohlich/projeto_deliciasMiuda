@@ -26,3 +26,21 @@ export async function registerSection(productId: string, formData: FormData) {
         return error
     }
 }
+
+export async function registerOption(sectionId: string, formData: FormData) {
+    try {
+        return await api.post(`/products/create-option/${sectionId}`, formData)
+    } catch (error: any) {
+        console.log('Erro na chamada de API:', error)
+        return error
+    }
+}
+
+export async function deleteProduct(productId: string) {
+    try {
+        return await api.patch(`/products/delete-product/${productId}`)
+    } catch (error: any) {
+        console.log('Erro na chamada de API:', error)
+        return error
+    }
+}

@@ -75,8 +75,8 @@ const DataTableProducts: React.FC<IDataTableProducts> = ({
             selector: (row: IProdutos) => row.id,
             sortable: true,
             cell: (row: IProdutos) => <div className="rdt_TableCell custom-column-empresa-cnpj flex gap-2 items-center">
-                <SectionDialog productId={row.id} productName={row.name} />
-                <DeleteProductModal />
+                <SectionDialog productId={row.id} productName={row.name} sections={row.sections} />
+                <DeleteProductModal productId={row.id}/>
             </div>,
             width: '10%'
         },

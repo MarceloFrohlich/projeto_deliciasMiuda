@@ -2,14 +2,16 @@ import { CiCircleChevRight } from 'react-icons/ci';
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '../../../../components/ui/dialog';
 import DataTableSections from './dataTableSections';
 import IncludeSectionModal from './includeSectionModal';
+import { ISections } from '../types/types';
 
 interface ISectionDialog{
     productId: string
     productName: string
+    sections: ISections[]
 }
 
 const SectionDialog: React.FC<ISectionDialog> = ({
-    productId, productName
+    productId, productName, sections
 }) => {
     return (
         <Dialog>
@@ -24,7 +26,7 @@ const SectionDialog: React.FC<ISectionDialog> = ({
                         <h1>Seções cadastradas</h1>
                         <IncludeSectionModal productId={productId} productName={productName}/>
                     </div>
-                    <DataTableSections sections={[]} />
+                    <DataTableSections sections={sections} />
                 </div>
             </DialogContent>
         </Dialog>
