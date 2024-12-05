@@ -4,11 +4,7 @@ import React from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { IProdutos } from '../types/types';
 import { formatData } from '@/hooks/generalFunctions'
-import { Dialog, DialogContent, DialogTrigger } from '../../../../components/ui/dialog';
-import { CiImageOn } from 'react-icons/ci';
-import Image from 'next/image';
-import DeleteProductModal from './deleteProductModal';
-import SectionDialog from './sectionDialog';
+import DeleteSectionModal from './deleteSectionModal';
 
 createTheme(
     'delicias',
@@ -23,11 +19,11 @@ createTheme(
 );
 
 interface IDataTableProducts {
-    products: IProdutos[]
+    sections: []
 }
 
-const DataTableProducts: React.FC<IDataTableProducts> = ({
-    products
+const DataTableSections: React.FC<IDataTableProducts> = ({
+    sections
 }) => {
 
     const columns = [
@@ -55,28 +51,11 @@ const DataTableProducts: React.FC<IDataTableProducts> = ({
             width: '10%'
         },
         {
-            name: 'Ver image',
-            selector: (row: IProdutos) => row.image,
-            sortable: true,
-            cell: (row: IProdutos) => <div className="rdt_TableCell custom-column-empresa-cnpj">
-                <Dialog>
-                    <DialogTrigger>
-                        <CiImageOn className='text-xl' />
-                    </DialogTrigger>
-                    <DialogContent className='w-[40%] h-[70%]'>
-                        <Image src={row.image} alt={row.name} fill className='rounded-lg' />
-                    </DialogContent>
-                </Dialog>
-            </div>,
-            width: '10%'
-        },
-        {
             name: 'Ações',
             selector: (row: IProdutos) => row.id,
             sortable: true,
-            cell: (row: IProdutos) => <div className="rdt_TableCell custom-column-empresa-cnpj flex gap-2 items-center">
-                <SectionDialog productId={row.id} productName={row.name} />
-                <DeleteProductModal />
+            cell: (row: IProdutos) => <div className="rdt_TableCell custom-column-empresa-cnpj">
+                <DeleteSectionModal />
             </div>,
             width: '10%'
         },
@@ -86,7 +65,7 @@ const DataTableProducts: React.FC<IDataTableProducts> = ({
     return (
         <DataTable
             columns={columns}
-            data={products}
+            data={sections}
             pagination
             paginationPerPage={10}
             noDataComponent={<div className="mt-8 font-semibold">Nenhum produto cadastrado!</div>}
@@ -103,4 +82,4 @@ const DataTableProducts: React.FC<IDataTableProducts> = ({
     );
 };
 
-export default DataTableProducts;
+export default DataTableSections;
