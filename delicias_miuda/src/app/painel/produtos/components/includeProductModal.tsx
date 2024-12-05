@@ -17,14 +17,14 @@ const IncludeProductModal: React.FC = () => {
                         <label className="text-base ">Produto:</label>
                         <input
                             name="name"
-                            className="focus:ring-0 border-heavy-rose border-2 px-4 py-2 bg-light-rose focus:outline-none rounded-md"
+                            className="focus:ring-0 border-heavy-rose border-2 px-4 py-2 focus:outline-none rounded-md"
                             type="text"></input>
                     </div>
                     <div className="flex flex-col gap-1">
                         <label className="text-base ">Descrição:</label>
                         <textarea
                             name="description"
-                            className="focus:ring-0 border-heavy-rose border-2 px-4 py-2 bg-light-rose focus:outline-none rounded-md min-h-[150px]"
+                            className="focus:ring-0 border-heavy-rose border-2 px-4 py-2 focus:outline-none rounded-md min-h-[150px]"
                         />
                     </div>
                     <input
