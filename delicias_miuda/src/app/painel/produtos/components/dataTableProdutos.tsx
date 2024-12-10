@@ -64,7 +64,7 @@ const DataTableProducts: React.FC<IDataTableProducts> = ({
                         <CiImageOn className='text-xl' />
                     </DialogTrigger>
                     <DialogContent className='w-[40%] h-[70%]'>
-                        <Image src={row.image} alt={row.name} fill className='rounded-lg' />
+                        <Image src={row.image} alt={row.name} fill priority className='rounded-lg' />
                     </DialogContent>
                 </Dialog>
             </div>,

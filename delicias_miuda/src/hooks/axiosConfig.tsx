@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { decryptData } from './generalFunctions';
-
 import { cookies } from 'next/headers';
 
 const cookieStore = cookies();

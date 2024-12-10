@@ -17,7 +17,7 @@ export default function Home() {
           <p className="text-heavy-rose text-justify text-lg px-2 md:text-xl">De bolos de festa espetaculares a doces personalizados, estamos aqui para transofmrar cada momento em uma experiência doce e memorável.</p>
         </div>
         
-        <Image src={chefImage} alt="Chefe" quality={100} height={800} width={800} className="h-[300px] md:w-1/3 md:block hidden rounded-md"
+        <Image src={chefImage} alt="Chefe" quality={100} height={800} width={800} priority className="h-[300px] md:w-1/3 md:block hidden rounded-md"
         
         />
       </div>

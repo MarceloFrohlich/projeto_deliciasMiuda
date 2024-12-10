@@ -36,10 +36,15 @@ export async function registerOptionAction(formData: FormData) {
     }
 }
 
-export async function destroyProduct(productId: string) {
+export async function deleteProductAction(formData: FormData) {
+    const productId = formData.get('productId') as string;
+
+    if (!productId) {
+        throw new Error('O ID do produto é obrigatório.');
+    }
     
     const response = await deleteProduct(productId)
-    if (response.status === 201) {
+    if (response.status === 200) {
         revalidatePath('/painel/produtos')
     }
 }
